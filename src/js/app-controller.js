@@ -77,6 +77,9 @@ define(function(require) {
                 return;
             }
 
+            initClients(null, certificate);
+            return;
+
             // get a fresh oauth token
             self.fetchOAuthToken(function(err, oauth) {
                 if (err) {
@@ -92,11 +95,8 @@ define(function(require) {
             var auth, imapOptions, imapClient, smtpOptions, smtpClient;
 
             auth = {
-                XOAuth2: {
-                    user: oauth.emailAddress,
-                    clientId: config.gmail.clientId,
-                    accessToken: oauth.token
-                }
+                user: 'safewithme.testuser@gmail.com',
+                pass: 'hellosafe'
             };
             imapOptions = {
                 secure: config.gmail.imap.secure,
@@ -165,7 +165,7 @@ define(function(require) {
     };
 
     self.checkForUpdate = function() {
-        if (!chrome || !chrome.runtime || !chrome.runtime.onUpdateAvailable) {
+        if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.onUpdateAvailable) {
             return;
         }
 
@@ -190,6 +190,9 @@ define(function(require) {
      * If not yet stored, handle online/offline cases on first use.
      */
     self.getEmailAddress = function(callback) {
+        callback(null, 'safewithme.testuser@gmail.com');
+        return;
+
         // try to fetch email address from local storage
         self.getEmailAddressFromConfig(function(err, cachedEmailAddress) {
             if (err) {
