@@ -281,6 +281,18 @@ define(function(require) {
         });
     };
 
+    /**
+     * List all the locally stored public keys
+     */
+    KeychainDAO.prototype.listLocalPublicKeys = function(callback) {
+        // search local keyring for public key
+        this._localDbDao.list('publickey', 0, null, callback);
+    };
+
+    KeychainDAO.prototype.removeLocalPublicKey = function(id, callback) {
+        this._localDbDao.remove('publickey_' + id, callback);
+    };
+
     KeychainDAO.prototype.lookupPrivateKey = function(id, callback) {
         // lookup in local storage
         this._localDbDao.read('privatekey_' + id, callback);

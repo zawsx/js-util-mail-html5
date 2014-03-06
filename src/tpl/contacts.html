@@ -1,0 +1,26 @@
+<div class="lightbox-body" ng-controller="ContactsCtrl">
+  <header>
+    <h2>Contacts</h2>
+    <button class="close" ng-click="state.contacts.toggle(false)" data-action="lightbox-close">&#xe007;</button>
+  </header>
+
+  <div class="content">
+    <div class="view-contacts">
+
+      <input type="text" ng-model="searchText">
+      <input id="keyfile-input" type="file" multiple keyfile-input>
+
+      <table summary="Kontakt">
+        <tr>
+          <th>Key ID</th>
+          <th>User ID</th>
+        </tr>
+        <tr ng-repeat="key in keys| filter:searchText">
+          <td>{{key._id}}</td>
+          <td>{{key.userId}}</td>
+          <td><button ng-click="removeKey(key)">Remove</button></td>
+        </tr>
+      </table>
+    </div><!-- /.view-contacts -->
+  </div><!-- /.content -->
+</div><!-- /.lightbox-body -->
