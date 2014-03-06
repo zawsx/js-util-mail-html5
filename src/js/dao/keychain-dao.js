@@ -256,28 +256,28 @@ define(function(require) {
                 return;
             }
 
-            if (!pubkey) {
-                // fetch from cloud storage
-                self._publicKeyDao.get(id, function(err, cloudPubkey) {
+            if (pubkey) {
+                callback(null, pubkey);
+                return;
+            }
+
+            // fetch from cloud storage
+            self._publicKeyDao.get(id, function(err, cloudPubkey) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+
+                // cache public key in cache
+                self.saveLocalPublicKey(cloudPubkey, function(err) {
                     if (err) {
                         callback(err);
                         return;
                     }
 
-                    // cache public key in cache
-                    self.saveLocalPublicKey(cloudPubkey, function(err) {
-                        if (err) {
-                            callback(err);
-                            return;
-                        }
-
-                        callback(null, cloudPubkey);
-                    });
+                    callback(null, cloudPubkey);
                 });
-
-            } else {
-                callback(null, pubkey);
-            }
+            });
         });
     };
 
