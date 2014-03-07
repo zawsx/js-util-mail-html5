@@ -150,13 +150,6 @@ define(function(require) {
                 });
             });
 
-            describe('Get UserId', function() {
-                it('should work with param', function() {
-                    var userId = pgp.getUserId(pubkey);
-                    expect(userId).to.contain(user);
-                });
-            });
-
             describe('Get Fingerprint', function() {
                 it('should work without param', function() {
                     var fingerprint = pgp.getFingerprint();
