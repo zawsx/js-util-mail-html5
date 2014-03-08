@@ -1,9 +1,9 @@
 {
     "name": "Whiteout Mail",
     "version": "0.0.1",
-    "main": "chrome.html",
+    "main": "node-webkit.html",
     "window": {
-        "toolbar": false,
+        "toolbar": true,
         "width": 1024,
         "height": 768
     }
