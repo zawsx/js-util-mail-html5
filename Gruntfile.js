@@ -53,10 +53,7 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     timeout: 20000,
-                    urls: ['http://localhost:<%= connect.test.options.port %>/test/unit/index.html'
-                        /*,
-                            'http://localhost:<%= connect.test.options.port %>/test/integration/index.html'*/
-                    ]
+                    urls: ['http://localhost:<%= connect.test.options.port %>/test/unit/index.html']
                 }
             }
         },
@@ -64,7 +61,10 @@ module.exports = function(grunt) {
         mocha: {
             all: {
                 options: {
-                    urls: ['http://localhost:<%= connect.test.options.port %>/test/new-unit/index.html'],
+                    urls: [
+                        'http://localhost:<%= connect.test.options.port %>/test/new-unit/index.html',
+                        'http://localhost:<%= connect.test.options.port %>/test/integration/index.html'
+                    ],
                     run: false,
                     reporter: 'Spec'
                 }
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            dist: ['dist', 'src/lib/*.js', 'test/lib', 'test/integration/src']
+            dist: ['dist', 'src/lib/*.js', 'test/lib']
         },
         sass: {
             dist: {
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
         },
         csso: {
             options: {
-                banner: '/*! Copyright © 2013, Whiteout Networks GmbH. All rights reserved.*/\n'
+                banner: '/*! Copyright © 2014, Whiteout Networks GmbH. All rights reserved.*/\n'
             },
             dist: {
                 files: {
@@ -201,12 +201,6 @@ module.exports = function(grunt) {
                 cwd: 'src/',
                 src: ['*.html', '*.js', '*.json'],
                 dest: 'dist/'
-            },
-            integration: {
-                expand: true,
-                cwd: 'src/',
-                src: ['**'],
-                dest: 'test/integration/src/'
             }
         },
 

@@ -359,8 +359,6 @@ define(function(require) {
      * Instanciate the mail email data access object and its dependencies. Login to imap on init.
      */
     self.init = function(options, callback) {
-        self.buildModules();
-
         // init user's local database
         self._userStorage.init(options.emailAddress, function(err) {
             if (err) {

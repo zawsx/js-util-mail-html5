@@ -40,6 +40,7 @@ define(function(require) {
                 }
 
                 // initiate controller by creating email dao
+                appController.buildModules();
                 appController.init({
                     emailAddress: emailAddress
                 }, function(err, availableKeys) {

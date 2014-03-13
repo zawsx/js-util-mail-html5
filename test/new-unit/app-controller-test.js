@@ -226,20 +226,16 @@ define(function(require) {
         });
 
         describe('init', function() {
-            var buildModulesStub, onConnectStub, emailAddress;
+            var onConnectStub, emailAddress;
 
             beforeEach(function() {
                 emailAddress = 'alice@bob.com';
 
-                // buildModules
-                buildModulesStub = sinon.stub(controller, 'buildModules');
-                buildModulesStub.returns();
                 // onConnect
                 onConnectStub = sinon.stub(controller, 'onConnect');
             });
 
             afterEach(function() {
-                buildModulesStub.restore();
                 onConnectStub.restore();
             });
 
